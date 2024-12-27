@@ -1,30 +1,28 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
-export enum InventoryStatus {
-  IN_STOCK = 'IN_STOCK',
-  OUT_OF_STOCK = 'OUT_OF_STOCK',
-}
-
-@Entity('inventory')
+@Entity()
 export class Inventory {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-  @Column({ length: 200 })
-  item_name: string;
+  @Column()
+  itemName: string;
 
-  @Column({ default: 0 })
-  stock_level: number;
+  @Column()
+  quantity: number;
 
-  @Column({
-    type: 'enum',
-    enum: InventoryStatus,
-  })
-  status: InventoryStatus;
+  @Column()
+  location: string;
 
   @CreateDateColumn()
-  created_at: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
-  updated_at: Date;
+  updatedAt: Date;
 }

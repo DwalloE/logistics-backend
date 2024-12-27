@@ -16,7 +16,14 @@ export const AppDataSource = new DataSource({
   username: process.env.DATABASE_USER || 'logistics_user',
   password: process.env.DATABASE_PASSWORD || 'secure_password',
   database: process.env.DATABASE_NAME || 'logistics_db',
-  entities: [User, Fleet, Trip, Inventory, Package],
+  entities: [
+    User,
+    Fleet,
+    Vehicle,
+    Trip,
+    Package,
+    Inventory,
+  ],  
   migrations: ['./migrations/*.ts'],
   synchronize: false, // Use migrations in production instead of auto-sync
   logging: true, // Enable logging for debugging

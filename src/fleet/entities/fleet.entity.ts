@@ -1,37 +1,27 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { Vehicle } from './vehicle.entity';
 
-export enum FleetStatus {
-  ACTIVE = 'ACTIVE',
-  INACTIVE = 'INACTIVE',
-  MAINTENANCE = 'MAINTENANCE',
-}
-
-@Entity('fleet')
+@Entity()
 export class Fleet {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
-  @Column({ length: 50 })
-  type: string;
-
-  @Column({ length: 100 })
-  model: string;
-
-  @Column({ unique: true, length: 50 })
-  plate_number: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column()
-  capacity_kg: number;
+  name: string;
 
-  @Column({
-    type: 'enum',
-    enum: FleetStatus,
-  })
-  status: FleetStatus;
+  @OneToMany(() => Vehicle, (vehicle) => vehicle.fleet)
+  vehicles: Vehicle[];
 
   @CreateDateColumn()
-  created_at: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
-  updated_at: Date;
+  updatedAt: Date;
 }

@@ -1,35 +1,33 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { Trip } from './trip.entity';
 
-export enum PackageStatus {
-  PENDING = 'PENDING',
-  IN_TRANSIT = 'IN_TRANSIT',
-  DELIVERED = 'DELIVERED',
-}
-
-@Entity('packages')
+@Entity()
 export class Package {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-  @ManyToOne(() => Trip, { nullable: false })
-  trip: Trip;
-
-  @Column('text')
+  @Column()
   description: string;
 
-  @Column({ type: 'decimal', precision: 10, scale: 2 })
-  weight_kg: number;
+  @Column()
+  weight: number;
 
-  @Column({
-    type: 'enum',
-    enum: PackageStatus,
-  })
-  status: PackageStatus;
+  @Column()
+  status: string;
+
+  @ManyToOne(() => Trip, (trip) => trip.packages)
+  trip: Trip;
 
   @CreateDateColumn()
-  created_at: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
-  updated_at: Date;
+  updatedAt: Date;
 }

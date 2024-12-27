@@ -1,45 +1,45 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne } from 'typeorm';
-import { Fleet } from '../../fleet/entities/fleet.entity';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { User } from '../../auth/entities/user.entity';
+import { Vehicle } from '../../fleet/entities/vehicle.entity';
+import { Package } from './package.entity';
 
-export enum TripStatus {
-  ONGOING = 'ONGOING',
-  COMPLETED = 'COMPLETED',
-  CANCELED = 'CANCELED',
-}
-
-@Entity('trips')
+@Entity()
 export class Trip {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
-  @ManyToOne(() => Fleet, { nullable: false })
-  fleet: Fleet;
-
-  @ManyToOne(() => User, { nullable: false })
-  driver: User;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column()
-  start_time: Date;
+  origin: string;
 
-  @Column({ nullable: true })
-  end_time: Date;
+  @Column()
+  destination: string;
 
-  @Column({ type: 'decimal', precision: 10, scale: 2, nullable: true })
-  distance_km: number;
+  @Column()
+  departureTime: Date;
 
-  @Column({ type: 'decimal', precision: 10, scale: 2, nullable: true })
-  cost_shillings: number;
+  @Column()
+  arrivalTime: Date;
 
-  @Column({
-    type: 'enum',
-    enum: TripStatus,
-  })
-  status: TripStatus;
+  @ManyToOne(() => User, (user) => user.trips)
+  user: User;
+
+  @ManyToOne(() => Vehicle, (vehicle) => vehicle.trips)
+  vehicle: Vehicle;
+
+  @OneToMany(() => Package, (packageEntity) => packageEntity.trip)
+  packages: Package[];
 
   @CreateDateColumn()
-  created_at: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
-  updated_at: Date;
+  updatedAt: Date;
 }

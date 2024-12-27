@@ -1,38 +1,36 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { Trip } from '../../trip/entities/trip.entity';
 
-export enum UserRole {
-  ADMIN = 'ADMIN',
-  DRIVER = 'DRIVER',
-  DISPATCH_CLERK = 'DISPATCH_CLERK',
-  RIDER = 'RIDER',
-}
-
-@Entity('users')
+@Entity()
 export class User {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-  @Column({ length: 100 })
-  name: string;
-
-  @Column({ unique: true, length: 100 })
-  email: string;
-
-  @Column({ unique: true, length: 15 })
-  phone_number: string;
+  @Column({ unique: true })
+  username: string;
 
   @Column()
-  password_hash: string;
+  password: string;
 
-  @Column({
-    type: 'enum',
-    enum: UserRole,
-  })
-  role: UserRole;
+  @Column()
+  email: string;
+
+  @Column({ default: true })
+  isActive: boolean;
+
+  @OneToMany(() => Trip, (trip) => trip.user)
+  trips: Trip[];
 
   @CreateDateColumn()
-  created_at: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
-  updated_at: Date;
+  updatedAt: Date;
 }
