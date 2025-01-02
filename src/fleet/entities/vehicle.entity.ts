@@ -13,27 +13,27 @@ import {
   @Entity()
   export class Vehicle {
     @PrimaryGeneratedColumn()
-    id: number;
+    id!: number;
   
     @Column()
-    licensePlate: string;
+    licensePlate!: string;
   
     @Column()
-    model: string;
+    model!: string;
   
     @Column()
-    capacity: number;
+    capacity!: number;
   
     @ManyToOne(() => Fleet, (fleet) => fleet.vehicles)
-    fleet: Fleet;
+    fleet!: Fleet;
   
     @OneToMany(() => Trip, (trip) => trip.vehicle)
-    trips: Trip[];
+    trips!: Trip[];
   
     @CreateDateColumn()
-    createdAt: Date;
+    createdAt!: Date;
   
     @UpdateDateColumn()
-    updatedAt: Date;
+    updatedAt!: Date;
   }
   

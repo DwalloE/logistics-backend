@@ -11,17 +11,17 @@ import { Vehicle } from './vehicle.entity';
 @Entity()
 export class Fleet {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  name: string;
+  name!: string;
 
   @OneToMany(() => Vehicle, (vehicle) => vehicle.fleet)
-  vehicles: Vehicle[];
+  vehicles!: Vehicle[];
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 }

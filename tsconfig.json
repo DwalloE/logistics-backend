@@ -1,12 +1,16 @@
 {
   "compilerOptions": {
     "module": "ESNext",
-    "outDir": "./dist",
     "target": "ES2017",
+    "moduleResolution": "node",
     "strict": true,
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+      "*": ["node_modules/*"]
+    }
   }
 }

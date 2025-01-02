@@ -19,7 +19,6 @@ export const AppDataSource = new DataSource({
   entities: [
     User,
     Fleet,
-    Vehicle,
     Trip,
     Package,
     Inventory,

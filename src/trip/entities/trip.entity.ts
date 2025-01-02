@@ -14,32 +14,32 @@ import { Package } from './package.entity';
 @Entity()
 export class Trip {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  origin: string;
+  origin!: string;
 
   @Column()
-  destination: string;
+  destination!: string;
 
   @Column()
-  departureTime: Date;
+  departureTime!: Date;
 
   @Column()
-  arrivalTime: Date;
+  arrivalTime!: Date;
 
   @ManyToOne(() => User, (user) => user.trips)
-  user: User;
+  user!: User;
 
   @ManyToOne(() => Vehicle, (vehicle) => vehicle.trips)
-  vehicle: Vehicle;
+  vehicle!: Vehicle;
 
   @OneToMany(() => Package, (packageEntity) => packageEntity.trip)
-  packages: Package[];
+  packages!: Package[];
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 }

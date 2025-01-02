@@ -11,23 +11,23 @@ import { Trip } from './trip.entity';
 @Entity()
 export class Package {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  description: string;
+  description!: string;
 
   @Column()
-  weight: number;
+  weight!: number;
 
   @Column()
-  status: string;
+  status!: string;
 
   @ManyToOne(() => Trip, (trip) => trip.packages)
-  trip: Trip;
+  trip!: Trip;
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 }

@@ -11,26 +11,26 @@ import { Trip } from '../../trip/entities/trip.entity';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column({ unique: true })
-  username: string;
+  username!: string;
 
   @Column()
-  password: string;
+  password!: string;
 
   @Column()
-  email: string;
+  email!: string;
 
   @Column({ default: true })
-  isActive: boolean;
+  isActive: boolean = true;
 
   @OneToMany(() => Trip, (trip) => trip.user)
-  trips: Trip[];
+  trips!: Trip[];
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 }

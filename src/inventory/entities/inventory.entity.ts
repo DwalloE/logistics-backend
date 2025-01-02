@@ -9,20 +9,20 @@ import {
 @Entity()
 export class Inventory {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  itemName: string;
+  itemName!: string;
 
   @Column()
-  quantity: number;
+  quantity!: number;
 
   @Column()
-  location: string;
+  location!: string;
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 }
