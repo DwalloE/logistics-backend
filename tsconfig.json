@@ -1,16 +1,15 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
+    "outDir": "./dist",        // Compiled files go to the `dist` directory
+    "rootDir": "./src",        // Source files are located in `src`
+    "module": "CommonJS",
     "target": "ES2017",
-    "moduleResolution": "node",
     "strict": true,
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "skipLibCheck": true,
-    "baseUrl": "./",
-    "paths": {
-      "*": ["node_modules/*"]
-    }
-  }
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"],      // Include all files in `src`
+  "exclude": ["node_modules"]   // Exclude dependencies
 }
